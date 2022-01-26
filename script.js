@@ -50,10 +50,9 @@ function decider(player, computer){
 
 
 //Play single round
-function singleRound(playerSelection, computerSelection){
-    let a = playerSelection;
-    let b = computerSelection;
-
+function singleRound(playerSelection = prompt("Select your Warrior"), computerSelection = computerPlay()){
+    
+    return decider(playerSelection, computerSelection);
 
 }
 
@@ -62,5 +61,13 @@ function singleRound(playerSelection, computerSelection){
 //selection is case insensitive
 
 //game () = > 5 round game
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+    let round = 1;
+    for (round; round<=5; round++){
+        alert(`Round ${round}: ${singleRound()}`);
+    }
+}
 //keeps score
 //reports winner or loser
