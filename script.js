@@ -29,6 +29,22 @@ function decider(player, computer){
               return  (computer=="scissors") ? "Player Wins!" : "Computer Wins!";
             }
         }
+        case("paper"):{
+            if(computer=="paper"){
+                return "TIE";
+            }
+            else{
+              return  (computer=="rock") ? "Player Wins!" : "Computer Wins!";
+            }
+        }
+        case("scissors"):{
+            if(computer=="scissors"){
+                return "TIE";
+            }
+            else{
+              return  (computer=="paper") ? "Player Wins!" : "Computer Wins!";
+            }
+        }
     }
 }
 
