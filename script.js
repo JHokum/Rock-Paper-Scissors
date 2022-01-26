@@ -52,7 +52,7 @@ function decider(player, computer){
 //Play single round
 function singleRound(playerSelection = prompt("Select your Warrior"), computerSelection = computerPlay()){
     
-    return decider(playerSelection, computerSelection);
+    return decider(playerSelection.toLowerCase(), computerSelection);
 
 }
 
