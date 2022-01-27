@@ -1,8 +1,11 @@
+let playerScore = 0;
+let computerScore = 0;
+
+
 //Game will play against computer
 
 //function => computerPlay (This is the computer making a selection)
 //Return Rock, Paper, Or Scissors
-
 
 
 function computerPlay(){
@@ -18,8 +21,26 @@ function computerPlay(){
     }
 };
 
+//Score helper function
+//accepts decision and variables to be updated
+function keepScore(decision){
+    switch(decision){
+        case("Player Wins!"):
+            playerScore++;
+            break;
+        
+        case("Computer Wins!"):
+            computerScore++;
+            break;
+        
+        default:
+            null;
+    }
+}
+
 //testing helper function
 function decider(player, computer){
+    
     switch(player){
         case("rock"):{
             if(computer=="rock"){
@@ -28,6 +49,7 @@ function decider(player, computer){
             else{
               return  (computer=="scissors") ? "Player Wins!" : "Computer Wins!";
             }
+            break;
         }
         case("paper"):{
             if(computer=="paper"){
@@ -36,6 +58,7 @@ function decider(player, computer){
             else{
               return  (computer=="rock") ? "Player Wins!" : "Computer Wins!";
             }
+            break;
         }
         case("scissors"):{
             if(computer=="scissors"){
@@ -44,7 +67,10 @@ function decider(player, computer){
             else{
               return  (computer=="paper") ? "Player Wins!" : "Computer Wins!";
             }
+            break;
         }
+        default:
+            return "Something went horribly wrong";
     }
 }
 
@@ -62,12 +88,29 @@ function singleRound(playerSelection = prompt("Select your Warrior"), computerSe
 
 //game () = > 5 round game
 function game(){
-    let playerScore = 0;
-    let computerScore = 0;
+    playerScore = 0;
+    computerScore = 0;
     let round = 1;
+    let decision = "";
     for (round; round<=5; round++){
-        alert(`Round ${round}: ${singleRound()}`);
+        decision = singleRound();
+        keepScore(decision);
+        alert(`Round ${round}: ${decision}`);
+        alert(`Player: ${playerScore} Computer: ${computerScore}`);
+    }
+    if (playerScore == computerScore){
+        alert("Computer and Player are equals, well fought!");
+    }
+    else if(playerScore>computerScore){
+        alert("Player has won it all!");
+    }
+    else{
+        alert("Computer has proven itself against man!");
     }
 }
 //keeps score
 //reports winner or loser
+
+//Currently need a helper function that knows who won the round
+//Then correctly updates the score to reflect results.
+//Will accept string and check who won.
