@@ -108,9 +108,4 @@ function game(){
         alert("Computer has proven itself against man!");
     }
 }
-//keeps score
-//reports winner or loser
-
-//Currently need a helper function that knows who won the round
-//Then correctly updates the score to reflect results.
-//Will accept string and check who won.
+//To be added: test user input, try again if input not valid
