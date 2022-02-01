@@ -2,6 +2,7 @@ let playerScore = 0;
 let computerScore = 0;
 
 
+
 //Game will play against computer
 
 //function => computerPlay (This is the computer making a selection)
@@ -76,7 +77,7 @@ function decider(player, computer){
 
 
 //Play single round
-function singleRound(playerSelection = prompt("Select your Warrior"), computerSelection = computerPlay()){
+function singleRound(playerSelection , computerSelection = computerPlay()){
     
     return decider(playerSelection.toLowerCase(), computerSelection);
 
@@ -87,25 +88,28 @@ function singleRound(playerSelection = prompt("Select your Warrior"), computerSe
 //selection is case insensitive
 
 //game () = > 5 round game
-function game(){
-    playerScore = 0;
-    computerScore = 0;
-    let round = 1;
-    let decision = "";
-    for (round; round<=5; round++){
-        decision = singleRound();
-        keepScore(decision);
-        alert(`Round ${round}: ${decision}`);
-        alert(`Player: ${playerScore} Computer: ${computerScore}`);
-    }
+function game(playerDecision){
+   
+
+    decision =singleRound(playerDecision); //Decision holds round results
+
+    keepScore(decision); // updates score
+   
     if (playerScore == computerScore){
         alert("Computer and Player are equals, well fought!");
     }
     else if(playerScore>computerScore){
+        
         alert("Player has won it all!");
     }
     else{
+        
         alert("Computer has proven itself against man!");
     }
 }
-//To be added: test user input, try again if input not valid
+//Init buttons array
+const buttons = Array.from(document.querySelectorAll("button"));
+//Add event listener to each button
+buttons.forEach(button => button.addEventListener("click",function (e){
+   game(e.target.textContent);
+}))
