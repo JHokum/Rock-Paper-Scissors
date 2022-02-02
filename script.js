@@ -89,22 +89,31 @@ function singleRound(playerSelection , computerSelection = computerPlay()){
     return decider(playerSelection.toLowerCase(), computerSelection);
 
 }
-
+//Button Helper
+function buttonGame(textContent){
+    
+    
+    keepScore(singleRound(textContent));
+    if(playerScore==5||computerScore==5){
+          
+        if(playerScore==5){
+            alert("You did it sir!");
+        }
+        else{
+            alert("You lost sir!");
+        }
+     
+        console.log(buttons);
+        buttons.forEach(button => button.disabled=true );
+        
+    }
+}
 
 //Init buttons array
 const buttons = Array.from(document.querySelectorAll("button"));
 //Add event listener to each button
-buttons.forEach(button => button.addEventListener("click",function (e){
-//    game(e.target.textContent);
-      keepScore(singleRound(e.target.textContent));
-      if(playerScore==5||computerScore==5){
-          
-          if(playerScore==5){
-              alert("You did it sir!");
-          }
-          else{
-              alert("You lost sir!");
-          }
-          buttons.forEach(button=>button.removeEventListener("click"))
-      }
-}))
+buttons.forEach(button => button.addEventListener("click",function(e){buttonGame(e.target.textContent)}))
+
+    
+      
+
