@@ -1,5 +1,10 @@
 let playerScore = 0;
 let computerScore = 0;
+let playerElement = document.querySelector(".player");
+let computerElement = document.querySelector(".computer");
+let playing = true;
+
+
 
 
 
@@ -28,10 +33,12 @@ function keepScore(decision){
     switch(decision){
         case("Player Wins!"):
             playerScore++;
+            playerElement.textContent=`${playerScore}`;
             break;
         
         case("Computer Wins!"):
             computerScore++;
+            computerElement.textContent= `${computerScore}`;
             break;
         
         default:
@@ -83,33 +90,21 @@ function singleRound(playerSelection , computerSelection = computerPlay()){
 
 }
 
-//Paramters: playerSelection, computerSelection
-//return string, winner of round
-//selection is case insensitive
 
-//game () = > 5 round game
-function game(playerDecision){
-   
-
-    decision =singleRound(playerDecision); //Decision holds round results
-
-    keepScore(decision); // updates score
-   
-    if (playerScore == computerScore){
-        alert("Computer and Player are equals, well fought!");
-    }
-    else if(playerScore>computerScore){
-        
-        alert("Player has won it all!");
-    }
-    else{
-        
-        alert("Computer has proven itself against man!");
-    }
-}
 //Init buttons array
 const buttons = Array.from(document.querySelectorAll("button"));
 //Add event listener to each button
 buttons.forEach(button => button.addEventListener("click",function (e){
-   game(e.target.textContent);
+//    game(e.target.textContent);
+      keepScore(singleRound(e.target.textContent));
+      if(playerScore==5||computerScore==5){
+          
+          if(playerScore==5){
+              alert("You did it sir!");
+          }
+          else{
+              alert("You lost sir!");
+          }
+          buttons.forEach(button=>button.removeEventListener("click"))
+      }
 }))
